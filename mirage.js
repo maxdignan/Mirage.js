@@ -8,7 +8,7 @@ module.exports = mirage;
 mirage.run = function(req, res, next){
 	mirage.exp_app.get('*', function(req, res){
 		mirage.mongo_model.find(mirage.query, function(err, data){
-			console.log(data + 'mirage');
+			//console.log(data + 'mirage');
 			if (err){
 				next(err);
 			} else{
@@ -18,7 +18,7 @@ mirage.run = function(req, res, next){
 	});
 
 	mirage.exp_app.post('*', function(req, res){
-		console.log(req.body);
+		//console.log(req.body);
 		var temp = new mirage.mongo_model(req.body);
 		temp.save(function(err){
 			if (err){
