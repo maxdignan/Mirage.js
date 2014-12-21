@@ -16,6 +16,10 @@ console.log(mirage.query);
 
 app.use('/api_route', mirage.run);
 
+app.get('/', function(req, res){
+	res.sendFile(__dirname + '/index.html');
+})
+
 app.listen(8000, function(){
 	console.log('Server Running...');
 })

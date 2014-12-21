@@ -14,4 +14,4 @@ Then,
 
 app.use('/api_route', mirage.run);
 
-That's it! You now have a RESTful API with GET(retrieve), POST(add new), PUT(adjust), and DELETE(remove). Now you only have to worry about the front end!
+That's it! You now have a RESTful API with GET(retrieve), POST(add new), PUT(adjust), and DELETE(remove). Now you only have to worry about the front end, lol =D !
