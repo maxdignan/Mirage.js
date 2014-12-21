@@ -1,22 +1,27 @@
 <html>
 	<head>
-		<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-		<script src="js/script.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="script.js"></script>
 	</head>
 
 	<body>
 
+	<input type="text" id="todoitem" />
+
 	<div>
-		<button onClick"getEvent()">GET</button>
+		<button onClick="getEvent()">GET</button>
+	</div>
+	<hr><br />
+	<text id="get"></text>
+	<br /><hr>
+	<div>
+		<button onClick="postEvent()">POST</button>
 	</div>
 	<div>
-		<button onClick"putEvent()">PUT</button>
+		<button onClick="updateEvent()">UPDATE</button>
 	</div>
 	<div>
-		<button onClick"updateEvent()">UPDATE</button>
-	</div>
-	<div>
-		<button onClick"deleteEvent()">DELETE</button>
+		<button onClick="deleteEvent()">DELETE</button>
 	</div>
 
 
