@@ -1,9 +1,7 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-var mirage = require('./mirage.js');
 
-console.log(mirage);
 
 app.use(express.static('./'));
 
@@ -12,11 +10,16 @@ var Schema = mongoose.Schema;
 var todoSchema = new Schema({text: String});
 var todoModel = mongoose.model('testing', todoSchema);
 
-mirage.setup(app, todoModel, 'testing');
 
-console.log(todoModel.modelName == mirage.query);
+//console.log(todoModel);
 
+//Here's all you need to do to have a REST api with mongo
+var mirage = require('./mirage.js');
+console.log(mirage); //UNECESSARY LINE
+mirage.setup(app, todoModel, todoModel.modelName);
 app.use('/api_route', mirage.run);
+
+
 
 app.get('/', function(req, res){
 	res.sendFile(__dirname + '/index.html');

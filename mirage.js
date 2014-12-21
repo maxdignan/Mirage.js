@@ -26,12 +26,31 @@ mirage.run = function(req, res, next){
 			}
 		});
 		//mirage.mongo_model.find(mirage.query).insert(req.body);
-	})
+	});
+
+
+	//still have not gotten it able to replace same number of items as deleted
+	mirage.exp_app.put('*', function(req, res){
+		console.log(req.body.one);
+
+		console.log(mirage.mongo_model.find(req.body.one));
+
+		mirage.mongo_model.find(req.body.one).remove().exec();
+
+		var temp = new mirage.mongo_model(req.body.two);
+		temp.save(function(err){
+			if (err){
+				next(err);
+			}
+		});
+	});
+
+	mirage.exp_app.delete('*', function(req, res){
+		mirage.mongo_model.find(req.body).remove().exec();
+	});
+
 	next();
 
-	mirage.exp_app.all('*', function(req, res){
-		res.end();
-	})
 }
 
 mirage.setup = function(exp_app, mongo_model, query){
