@@ -4,7 +4,6 @@
   "author": "Max Dignan <maxdignan@gmail.com>",
   "engine": "nodev0.10.33",
   "dependencies": {
-    "body-parser": "^1.10.0",
     "express": "^4.10.6"
   },
   "repository": {

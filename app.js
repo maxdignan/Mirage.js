@@ -16,8 +16,11 @@ var todoModel = mongoose.model('testing', todoSchema);
 //Here's all you need to do to have a REST api with mongo
 var mirage = require('./mirage.js');
 console.log(mirage); //UNECESSARY LINE
-mirage.setup(app, todoModel, todoModel.modelName);
-app.use('/api_route', mirage.run);
+mirage(app, todoModel, todoModel.modelName, [function(req, res, next){
+		console.log(req); next();
+}]);
+
+
 
 
 
@@ -28,4 +31,4 @@ app.get('/', function(req, res){
 
 app.listen(8000, function(){
 	console.log('Server Running...');
-})
+});
