@@ -8,7 +8,7 @@ module.exports = mirage;
 mirage.run = function(req, res, next){
 	mirage.exp_app.get('*', function(req, res){
 		mirage.mongo_model.find(mirage.query, function(err, data){
-			//console.log(data + 'mirage');
+			console.log(data + 'mirage');
 			if (err){
 				next(err);
 			} else{
