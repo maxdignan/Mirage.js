@@ -1,6 +1,7 @@
 var express = require('express');
+var _ = require('lodash');
 
-module.exports = function(app, mongo_model, query, middleware){
+module.exports = function(app, mongo_model, query, reqAccess, middleware){
     var router = express.Router();
 
     //add middleware
@@ -29,7 +30,7 @@ module.exports = function(app, mongo_model, query, middleware){
     });
 
     router.post('/', function (req, res) {
-        mongo_model.create(req.body, function(err, doc){
+        mongo_model.create(reqAccess(req), function(err, doc){
             if (err){
                 res.send('an error occured');
             }
@@ -39,12 +40,27 @@ module.exports = function(app, mongo_model, query, middleware){
 
     router.delete('/:id', function(req, res){
         var id = req.params.id;
-
+        mongo_model.remove({_id: id}, function(err, doc){
+            if (err){
+                res.send('an error occured');
+            }
+            res.send(doc);
+        });
     });
 
     router.put('/:id', function(req, res){
         var id = req.params.id;
-
+        mongo_model.findById(id, function(err, doc){
+            if (err){
+                res.send('an error occured');
+            }
+            var edit = reqAccess(req);
+            _.forEach(edit, function(value, key){
+                doc[key] = value;
+            });
+            doc.save();
+            res.send(doc);
+        });
     });
 
     app.use(query, router);

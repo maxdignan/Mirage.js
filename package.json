@@ -11,6 +11,7 @@
     "url": "https://github.com/maxdignan/Mirage.js.git"
   },
   "devDependencies": {
+    "lodash": "^3.10.1",
     "mongoose": "^4.2.2"
   }
 }
