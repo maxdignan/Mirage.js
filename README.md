@@ -11,12 +11,12 @@ mirage(app, mongo_Model, '/api_route', reqAccessor, [middleware]); Respectively 
 The accessor function is a function that when provided the express request object, will return an object that matches the schema of the mongo model. The values of the properties of this object can be determined from the request object.
 
 
-function reqAccessor(expressRequest){
-    return {
-        text: expressRequest.headers.text,
-        otherProperty: expressRequest.headers.otherProperty,
-        updatedAt: new Date()
-    }
-}
+function reqAccessor(expressRequest){\n
+    return {\n
+        text: expressRequest.headers.text,\n
+        otherProperty: expressRequest.headers.otherProperty,\n
+        updatedAt: new Date()\n
+    }\n
+}\n
 
 That's it! You now have a RESTful API with GET(retrieve), POST(add new), PUT(adjust), and DELETE(remove). Now you only have to worry about the front end, lol =D !
