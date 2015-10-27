@@ -7,7 +7,7 @@ app.use(express.static('./'));
 
 mongoose.connect('mongodb://localhost:27017/db');
 var Schema = mongoose.Schema;
-var todoSchema = new Schema({text: String});
+var todoSchema = new Schema({text: String, random: Number});
 var todoModel = mongoose.model('testing', todoSchema);
 
 
@@ -18,12 +18,14 @@ var mirage = require('./mirage');
 
 function reqAcc(request){
 	return {
-		text: request.headers.text
+		text: request.headers.text,
+		random: request.headers.random
 	};
 }
 
 mirage(app, todoModel, '/api', reqAcc, [function(req, res, next){
-		console.log(req); next();
+		//console.log(req);
+		next();
 }]);
 
 console.log(app);
