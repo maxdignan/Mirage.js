@@ -2,7 +2,8 @@ Mirage.js is a node.js based, Express.js middleware application that allows deve
 
 When setting up Mirage.js you only need to do the following...
 
-var mirage = require('mirage');
+var mirage = require('./mirage');  
+(include mirage.js into your file structure).
 
 do your express and mongodb/mongoose setup to get app and mongo model variables
 
@@ -11,7 +12,7 @@ mirage(app, mongo_Model, '/api_route', reqAccessor, [middleware]); Respectively 
 The accessor function is a function that when provided the express request object, will return an object that matches the schema of the mongo model. The values of the properties of this object can be determined from the request object.
 
 
-function reqAccessor(expressRequest){  
+function reqAccessor(expressRequest) {  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return {  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: expressRequest.headers.text,  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherProperty: expressRequest.headers.otherProperty,  
