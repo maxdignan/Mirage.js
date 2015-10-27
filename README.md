@@ -6,12 +6,17 @@ var mirage = require('mirage');
 
 //do your express and mongodb/mongoose setup to get app and mongo model variables
 
-mirage.setup(app, mongo_Model, 'query'); Respectively these are (the express app variable, your mongo model variable, and your query you wish to perform).
+mirage(app, mongo_Model, '/api_route', reqAccessor, [middleware]); Respectively these are (the express app variable, your mongo model variable, and your api route you wish to perform, then the accessor function (will explain), and an array of middleware).
+
+The accessor function is a function that when provided the express request object, will return an object that matches the schema of the mongo model. The values of the properties of this object can be determined from the request object.
 
 
-
-Then,
-
-app.use('/api_route', mirage.run);
+function reqAccessor(expressRequest){
+    return {
+        text: expressRequest.headers.text,
+        otherProperty: expressRequest.headers.otherProperty,
+        updatedAt: new Date()
+    }
+}
 
 That's it! You now have a RESTful API with GET(retrieve), POST(add new), PUT(adjust), and DELETE(remove). Now you only have to worry about the front end, lol =D !
