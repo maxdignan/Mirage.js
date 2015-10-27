@@ -56,7 +56,7 @@ module.exports = function(app, mongo_model, query, reqAccess, middleware){
             }
             var edit = reqAccess(req);
             _.forEach(edit, function(value, key){
-                console.log(key, value);
+                //console.log(key, value);
                 if (value){
                     doc[key] = value;
                 }
